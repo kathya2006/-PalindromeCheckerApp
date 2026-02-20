@@ -1,35 +1,36 @@
-public class UseCase1PalindromeCheckerApp {
-    public static void main(String[] args) {
+import java.util.Stack;
+    public class UseCase1PalindromeCheckerApp {
+        public static void main(String[] args) {
 
-        // Original String
-        String original = "radar";
+            // Original String
+            String original = "madam";
 
-        // Convert string to character array
-        char[] characters = original.toCharArray();
+            // Create Stack
+            Stack<Character> stack = new Stack<>();
 
-        // Two-pointer variables
-        int start = 0;
-        int end = characters.length - 1;
-
-        boolean isPalindrome = true;
-
-        // Two-pointer comparison
-        while (start < end) {
-
-            if (characters[start] != characters[end]) {
-                isPalindrome = false;
-                break;
+            // Push characters into stack
+            for (int i = 0; i < original.length(); i++) {
+                stack.push(original.charAt(i));
             }
 
-            start++;
-            end--;
-        }
+            boolean isPalindrome = true;
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println("The string \"" + original + "\" is a Palindrome.");
-        } else {
-            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+            // Pop characters and compare
+            for (int i = 0; i < original.length(); i++) {
+
+                char poppedChar = stack.pop();
+
+                if (original.charAt(i) != poppedChar) {
+                    isPalindrome = false;
+                    break;
+                }
+            }
+
+            // Print result
+            if (isPalindrome) {
+                System.out.println("The string \"" + original + "\" is a Palindrome.");
+            } else {
+                System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+            }
         }
     }
-}
